@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e ; # Exit in the event of a failed command.
+
+# mirror ($source, $target)
+mirror() {
+  SOURCE=$1
+  TARGET=$2
+
+  echo "Starting Mirror from '$SOURCE' to '$TARGET'."
+  /usr/bin/mc mirror -a -w $SOURCE $TARGET
+}
+
+# Mirror the bucket
+mirror {{ .Values.location.source }} {{ .Values.location.target }}
